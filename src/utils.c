@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/09 11:35:21 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/12 16:47:13 by jnuncio-         ###   ########.fr       */
+/*   Created: 2024/01/12 14:46:30 by jnuncio-          #+#    #+#             */
+/*   Updated: 2024/01/12 16:52:19 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-// void	*thread_routine(void *data)
-// {
-// 	pthread_t	*philo;
-// 	unsigned int	i;
-
-// 	philo = (pthread_t *)data;
-// 	return (NULL);
-// }
-
-int	main(int ac, char **av)
+long int ph_atoi(char *str)
 {
-	static t_table	table;
-	
-	table_init(&table, ac, av);
-	printf("Nb Philos = %ld\nT. Die = %ld\nT. Eat = %ld\nT. Sleep = %ld\nMax Meals = %ld\n",
-		table.n_philos, table.time_to_die, table.time_to_eat, table.time_to_sleep, table.max_meals);
-	return (0);
+	long int	res;
+	long int	sign;
+
+	res = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str >= '0' && *str <= '9')
+	{
+		res = res * 10 + *str - '0';
+		str++;
+	}
+	return (res * sign);
 }

@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/11 20:40:25 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/12 16:46:55 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,22 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	int		n_philos;
-	time_t	time_to_die;
-	time_t	time_to_eat;
-	time_t	time_to_sleep;
-	int		n_meals;
+	long int	n_philos;
+	long int	time_to_die;
+	long int	time_to_eat;
+	long int	time_to_sleep;
+	long int	max_meals;
 }	t_table;
 
 
 /******************************************************************************
 *                           Function Prototypes                               *
 ******************************************************************************/
+
+//		utils.c
+long int 	ph_atoi(char *str);
+
+//		init.c
+void		table_init(t_table *table, int ac, char **av);
 
 #endif

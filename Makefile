@@ -6,7 +6,7 @@
 #    By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 11:35:15 by jnuncio-          #+#    #+#              #
-#    Updated: 2024/01/09 16:01:45 by jnuncio-         ###   ########.fr        #
+#    Updated: 2024/01/12 15:14:34 by jnuncio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude -g
 LFLAGS = -pthread #-fsanitize=address -fsanitize=thread
 RM = rm -rf
-SRC = $(addprefix src/, main.c)
+SRC = $(addprefix src/, main.c\
+	utils.c\
+	init.c)
 OBJ = $(SRC:src/%c=bin/%o)
 
 all: $(BIN) $(NAME)
