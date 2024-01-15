@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/12 16:46:55 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/15 19:40:48 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 # define PURPLE	"\e[35m"
 # define CYAN	"\e[36m"
 
+# define STR_ERR_THREAD	"%s error: Could not create thread.\n"
+# define STR_ERR_MALLOC	"%s error: Could not allocate memory.\n"
+# define STR_ERR_MUTEX	"%s error: Could not create mutex.\n"
+
 /******************************************************************************
 *                                 Structures                                  *
 ******************************************************************************/
@@ -39,6 +43,11 @@ typedef struct s_philo
 {
 	/*data*/
 }	t_philo;
+
+typedef struct s_forks
+{
+	/*data*/
+}	t_forks;
 
 typedef struct s_table
 {
