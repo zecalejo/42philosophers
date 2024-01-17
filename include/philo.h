@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/15 19:40:48 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/17 14:04:11 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ typedef struct s_forks
 
 typedef struct s_table
 {
-	long int	n_philos;
-	long int	time_to_die;
-	long int	time_to_eat;
-	long int	time_to_sleep;
-	long int	max_meals;
+	int	n_philos;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	max_meals;
 }	t_table;
 
 
@@ -63,10 +63,14 @@ typedef struct s_table
 *                           Function Prototypes                               *
 ******************************************************************************/
 
+//		parsing.c
+int 		check_args(char **av);
+
 //		utils.c
-long int 	ph_atoi(char *str);
+int 		ph_atoi(char *str);
 
 //		init.c
-void		table_init(t_table *table, int ac, char **av);
+t_table		*table_init(int ac, char **av);
+t_philos	*philos_init(int n_philos);
 
 #endif

@@ -6,16 +6,16 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:46:30 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/12 16:52:19 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/17 13:32:54 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long int ph_atoi(char *str)
+int ph_atoi(char *str)
 {
-	long int	res;
-	long int	sign;
+	int	res;
+	int	sign;
 
 	res = 0;
 	sign = 1;
