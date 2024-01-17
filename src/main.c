@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:21 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/17 13:47:53 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:56:21 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int	main(int ac, char **av)
 		if (!check_args(av))
 			return (printf("Only positive ints, please.\n"));
 		table = table_init(ac, av);
-		printf("Nb Philos = %d\nT. Die = %d\nT. Eat = %d\nT. Sleep = %d\n",
+		printf("Nb Philos = %lu\nT. Die = %lu\nT. Eat = %lu\nT. Sleep = %lu\n",
 			table->n_philos, table->time_to_die, table->time_to_eat, table->time_to_sleep);
 		if (table->max_meals)
-			printf("Max Meals = %d\n", table->max_meals);
+			printf("Max Meals = %lu\n", table->max_meals);
 	}
 	free (table);
 	return (0);

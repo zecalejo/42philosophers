@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/17 14:04:11 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/17 19:50:26 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,11 @@
 
 typedef struct s_philo
 {
-	/*data*/
+	pthread_t			*philo;
+	unsigned long int	id;
+	unsigned long int	meals_eaten;
+	unsigned long int	last_meal;
+	pthread_mutex_t		ph_mutex;
 }	t_philo;
 
 typedef struct s_forks
@@ -51,11 +55,12 @@ typedef struct s_forks
 
 typedef struct s_table
 {
-	int	n_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_meals;
+	unsigned long int	n_philos;
+	unsigned long int	time_to_die;
+	unsigned long int	time_to_eat;
+	unsigned long int	time_to_sleep;
+	unsigned long int	max_meals;
+	t_philo				**philos;
 }	t_table;
 
 
@@ -71,6 +76,6 @@ int 		ph_atoi(char *str);
 
 //		init.c
 t_table		*table_init(int ac, char **av);
-t_philos	*philos_init(int n_philos);
+t_philo		**philos_init(t_table *table);
 
 #endif
