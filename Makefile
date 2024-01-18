@@ -6,7 +6,7 @@
 #    By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 11:35:15 by jnuncio-          #+#    #+#              #
-#    Updated: 2024/01/17 13:48:45 by jnuncio-         ###   ########.fr        #
+#    Updated: 2024/01/18 16:08:18 by jnuncio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,13 @@ NAME = philo
 BIN	= bin
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude -g
-LFLAGS = -pthread #-fsanitize=address -fsanitize=thread
+LFLAGS = -pthread -fsanitize=thread
 RM = rm -rf
 SRC = $(addprefix src/, main.c\
 	parsing.c\
 	utils.c\
-	init.c)
+	init.c\
+	exit.c)
 OBJ = $(SRC:src/%c=bin/%o)
 
 all: $(BIN) $(NAME)

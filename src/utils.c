@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:46:30 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/17 13:32:54 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:57:12 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,15 @@
 
 int ph_atoi(char *str)
 {
-	int	res;
-	int	sign;
+	unsigned long int	res;
 
 	res = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		str++;
 	while (*str >= '0' && *str <= '9')
 	{
 		res = res * 10 + *str - '0';
 		str++;
 	}
-	return (res * sign);
+	if (res > INT_MAX)
+		return (error_int(STR_ERR_INPUT_DIGIT, NULL, 0));
+	return (res);
 }
