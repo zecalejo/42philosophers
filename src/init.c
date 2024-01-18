@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:11:57 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/17 20:06:15 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:25:35 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_table	*table_init(int ac, char **av)
 	table->time_to_eat = ph_atoi(av[3]);
 	table->time_to_sleep = ph_atoi(av[4]);
 	if (ac == 6)
-		table->max_meals = ph_atoi(av[5]);
+		table->n_meals = ph_atoi(av[5]);
 	return (table);
 }
 

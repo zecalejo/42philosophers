@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/17 19:50:26 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:25:32 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_table
 	unsigned long int	time_to_die;
 	unsigned long int	time_to_eat;
 	unsigned long int	time_to_sleep;
-	unsigned long int	max_meals;
+	unsigned long int	n_meals;
 	t_philo				**philos;
 }	t_table;
 
