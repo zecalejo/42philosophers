@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:06:25 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/20 16:02:58 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 20:29:58 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	free_table(t_table *table)
 	
 }
 
-void	dest_mutexes(t_table *table)
+void	destroy_mutexes(t_table *table)
+{
+	// code
+}
 
 int	msg(char *str, char *detail, int exit_no)
 {

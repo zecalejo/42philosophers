@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/20 15:54:55 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:13:32 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 /******************************************************************************
 *                                     Macros                                  *
 ******************************************************************************/
-# define MAX_PHILOS	INT_MAX
+# define MAX_PHILOS	200
+# define FALSE 0
+# define TRUE 1
 
 # define NC	"\e[0m"
 # define RED	"\e[31m"
@@ -47,12 +49,13 @@
 
 typedef struct s_philo
 {
-	pthread_t			*philo;
+	pthread_t			*thread;
 	int					id;
 	int					fork[2];
 	int					meals_eaten;
 	unsigned long int	last_meal;
-	pthread_mutex_t		ph_mutex;
+	pthread_mutex_t		philo_mtx;
+	t_table				*table;
 }	t_philo;
 
 typedef struct s_table
@@ -63,9 +66,9 @@ typedef struct s_table
 	unsigned long int	time_to_sleep;
 	int					n_meals;
 	int					stop_sim;
-	pthread_mutex_t		write_lock;
-	pthread_mutex_t		sim_stop_lock;
-	pthread_mutex_t		*fork_locks;
+	pthread_mutex_t		write_mtx;
+	pthread_mutex_t		stop_sim_mtx;
+	pthread_mutex_t		*fork_mtxs;
 	t_philo				**philos;
 }	t_table;
 

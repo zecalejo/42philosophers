@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:11:57 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/18 16:58:00 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 21:14:07 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_table	*table_init(int ac, char **av)
 	table->philos = philos_init(table);
 	if (!table->philos)
 		return (NULL);
-	table->stop_sim = 0;
+	table->stop_sim = FALSE;
 	return (table);
 }
 
@@ -40,23 +40,15 @@ t_philo	**philos_init(t_table *table)
 	i = 0;
 	philos = malloc(sizeof(t_philo *) * table->n_philos);
 	if (!philos)
-	// {
-	// 	printf("error: unable to allocate memory (t_philo **philos)\n");
 		return (error_null(STR_ERR_MALLOC, NULL, 0));
-	// }
 	while (i < table->n_philos)
 	{
 		philos[i] = malloc(sizeof(t_philo *) * 1);
 		if (!philos[i])
-		// {
-		// 	printf("error: unable to allocate memory (t_philo *philos[%lu])\n", i);
 			return (error_null(STR_ERR_MALLOC, NULL, 0));
-		// }
-		if (pthread_mutex_init(&philos[i]->ph_mutex, 0) != 0)
-		// {
-		// 	printf("error: unable to initialize mutex (t_philo *philos[%lu])\n", i);
+		if (pthread_mutex_init(&philos[i]->philo_mtx, 0) != 0)
 			return (error_null(STR_ERR_MUTEX, NULL, 0));
-		// }
+		philos[i]->table = table;
 		philos[i]->id = i + 1;		
 		philos[i]->meals_eaten = 0;
 		i++;
