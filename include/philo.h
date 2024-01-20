@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/18 17:14:43 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:54:55 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ typedef struct s_table
 ******************************************************************************/
 
 //		parsing.c
-int 		check_input(char **av);
+int 		valid_input(char **av);
 
 //		utils.c
 int 		ph_atoi(char *str);

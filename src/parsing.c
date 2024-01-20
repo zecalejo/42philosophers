@@ -6,13 +6,13 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 22:40:44 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/18 17:11:06 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:54:44 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int check_input(char **av)
+int valid_input(char **av)
 {
 	int	i;
 	int	j;

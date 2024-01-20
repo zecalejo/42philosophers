@@ -6,11 +6,21 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:21 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/18 17:13:46 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:59:19 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	start_sim(t_table *table)
+{
+	//code
+}
+
+static void	stop_sim(t_table *table)
+{
+	//code
+}
 
 int	main(int ac, char **av)
 {
@@ -20,8 +30,8 @@ int	main(int ac, char **av)
 		return (error_int(STR_USAGE, NULL, 0));
 	else
 	{
-		if (!check_input(av))
-			return (0);
+		if (!valid_input(av))
+			return (EXIT_FAILURE);
 		table = table_init(ac, av);
 		printf("Nb Philos = %d\nT. Die = %lu\nT. Eat = %lu\nT. Sleep = %lu\n",
 			table->n_philos, table->time_to_die, table->time_to_eat, table->time_to_sleep);
