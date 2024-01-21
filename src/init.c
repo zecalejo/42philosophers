@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:11:57 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/20 21:14:07 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/21 23:50:00 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_philo	**philos_init(t_table *table)
 			return (error_null(STR_ERR_MUTEX, NULL, 0));
 		philos[i]->table = table;
 		philos[i]->id = i + 1;		
-		philos[i]->meals_eaten = 0;
+		philos[i]->meals_eaten = -1;
 		i++;
 	}
 	return (philos);

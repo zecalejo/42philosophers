@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:06:25 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/20 20:29:58 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/21 23:51:54 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,40 @@
 
 void	free_table(t_table *table)
 {
-	
+	int	i;
+
+	if (!table)
+		return ;
+	if (table->fork_mtxs != NULL)
+		free(table->fork_mtxs);
+	if (table->philos != NULL)
+	{
+		i = 0;
+		while (i < table->n_philos)
+		{
+			if (table->philos[i] != NULL)
+				free(table->philos[i]);
+			i++;
+		}
+		free(table->philos);
+	}
+	free(table);
+	return ;
 }
 
-void	destroy_mutexes(t_table *table)
+void	destroy_mtxs(t_table *table)
 {
-	// code
+	int	i;
+
+	i = 0;
+	while (i < table->n_philos)
+	{
+		pthread_mutex_destroy(&table->fork_mtxs[i]);
+		pthread_mutex_destroy(&table->philos[i]->philo_mtx);
+		i++;
+	}
+	pthread_mutex_destroy(&table->write_mtx);
+	pthread_mutex_destroy(&table->stop_sim_mtx);
 }
 
 int	msg(char *str, char *detail, int exit_no)
@@ -34,16 +62,16 @@ int	msg(char *str, char *detail, int exit_no)
 int	error_int(char *str, char *detail, t_table *table)
 {
     (void)table;
-	// if (table != NULL)
-	// 	free_table(table);
+	if (table != NULL)
+		free_table(table);
 	return (msg(str, detail, 0));
 }
 
 void	*error_null(char *str, char *detail, t_table *table)
 {
     (void)table;
-	// if (table != NULL)
-	// 	free_table(table);
+	if (table != NULL)
+		free_table(table);
 	msg(str, detail, EXIT_FAILURE);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:21 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/20 15:59:19 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/21 23:55:22 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,40 @@
 
 static int	start_sim(t_table *table)
 {
-	//code
+	int	i;
+
+	table->start_time = gettimeofday_ms();
+	i = 0;
+	while (i < table->n_philos)
+	{
+		if (pthread_create(&table->philos[i]->thread, NULL,
+				&philo_routine, table->philos[i]) != 0)
+			return (error_int(STR_ERR_THREAD, NULL, table));
+		i++;
+	}
+	if (table->n_philos > 1)
+	{
+		if (pthread_create(&table->supervisor, NULL,
+				&supervisor, table) != 0)
+			return (error_int(STR_ERR_THREAD, NULL, table));
+	}
+	return (TRUE);
 }
 
 static void	stop_sim(t_table *table)
 {
-	//code
+	int	i;
+
+	i = 0;
+	while (i < table->n_philos)
+	{
+		pthread_join(table->philos[i]->thread, NULL);
+		i++;
+	}
+	if (table->n_philos > 1)
+		pthread_join(table->supervisor, NULL);
+	destroy_mtxs(table);
+	free_table(table);
 }
 
 int	main(int ac, char **av)
@@ -28,16 +56,13 @@ int	main(int ac, char **av)
 	
 	if (ac < 5 || ac > 6)
 		return (error_int(STR_USAGE, NULL, 0));
-	else
-	{
-		if (!valid_input(av))
-			return (EXIT_FAILURE);
-		table = table_init(ac, av);
-		printf("Nb Philos = %d\nT. Die = %lu\nT. Eat = %lu\nT. Sleep = %lu\n",
-			table->n_philos, table->time_to_die, table->time_to_eat, table->time_to_sleep);
-		if (table->n_meals)
-			printf("Max Meals = %d\n", table->n_meals);
-	}
-	free (table);
-	return (0);
+	if (!valid_input(av))
+		return (EXIT_FAILURE);
+	table = table_init(ac, av);
+	if (!table)
+		return (EXIT_FAILURE);
+	if (!start_sim(table))
+		return (EXIT_FAILURE);
+	stop_sim(table);
+	return (EXIT_SUCCESS);
 }
