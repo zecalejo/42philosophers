@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:15:54 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/21 23:18:53 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:10:47 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	eat_sleep_routine(t_philo *philo)
 	philo->last_meal = gettimeofday_ms();
 	pthread_mutex_unlock(&philo->philo_mtx);
 	status_duration(philo->table, philo->table->time_to_eat);
-	if (has_simulation_stopped(philo->table) == FALSE)
+	if (sim_stopped(philo->table) == FALSE)
 	{
 		pthread_mutex_lock(&philo->philo_mtx);
 		philo->meals_eaten++;
@@ -50,7 +50,7 @@ static void	eat_sleep_routine(t_philo *philo)
 
 static void	think_routine(t_philo *philo, int silent)
 {
-	unsigned long	thinking_time;
+	long long int	thinking_time;
 
 	pthread_mutex_lock(&philo->philo_mtx);
 	thinking_time = (philo->table->time_to_die - (gettimeofday_ms() - philo->last_meal) \
@@ -71,7 +71,7 @@ static void	*foreveralone_routine(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->table->fork_mtxs[philo->fork[0]]);
 	write_status(philo, FALSE, "has taken a fork");
-	philo_sleep(philo->table, philo->table->time_to_die);
+	status_duration(philo->table, philo->table->time_to_die);
 	write_status(philo, FALSE, "died");
 	pthread_mutex_unlock(&philo->table->fork_mtxs[philo->fork[0]]);
 	return (NULL);

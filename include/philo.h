@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/21 23:32:47 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:49:05 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,9 +98,8 @@ int				sim_stopped(t_table *table);
 void			*supervisor(void *data);
 
 //		exit.c
-void			free_table(t_table *table);
+void			*free_table(t_table *table);
 void			destroy_mtxs(t_table *table);
-int				msg(char *str, char *detail, int exit_no);
 int				error_int(char *str, char *detail, t_table *table);
 void			*error_null(char *str, char *detail, t_table *table);
 

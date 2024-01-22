@@ -6,18 +6,18 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:06:25 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/21 23:51:54 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/22 16:48:41 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	free_table(t_table *table)
+void	*free_table(t_table *table)
 {
 	int	i;
 
 	if (!table)
-		return ;
+		return (NULL);
 	if (table->fork_mtxs != NULL)
 		free(table->fork_mtxs);
 	if (table->philos != NULL)
@@ -32,7 +32,7 @@ void	free_table(t_table *table)
 		free(table->philos);
 	}
 	free(table);
-	return ;
+	return (NULL);
 }
 
 void	destroy_mtxs(t_table *table)
@@ -50,7 +50,7 @@ void	destroy_mtxs(t_table *table)
 	pthread_mutex_destroy(&table->stop_sim_mtx);
 }
 
-int	msg(char *str, char *detail, int exit_no)
+static int	msg(char *str, char *detail, int exit_no)
 {
 	if (!detail)
 		printf("%s", str);
