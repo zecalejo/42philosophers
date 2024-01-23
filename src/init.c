@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:11:57 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 16:42:25 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/22 23:45:00 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_philo	**philos_init(t_table *table)
 		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	while (i < table->n_philos)
 	{
-		philos[i] = malloc(sizeof(t_philo *) * 1);
+		philos[i] = malloc(sizeof(t_philo) * 1);
 		if (!philos[i])
 			return (error_null(STR_ERR_MALLOC, NULL, 0));
 		if (pthread_mutex_init(&philos[i]->philo_mtx, 0) != 0)
@@ -82,7 +82,7 @@ t_table	*table_init(int ac, char **av)
 {
 	t_table	*table;
 	
-	table = malloc(sizeof(t_table *) * 1);
+	table = malloc(sizeof(t_table) * 1);
 	table->n_philos = ph_atoi(av[1]);
 	if (table->n_philos < 1 || table->n_philos > MAX_PHILOS)
 		return (error_null(STR_ERR_INPUT_NPHIL, av[1], 0));
