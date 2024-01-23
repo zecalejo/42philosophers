@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 21:03:27 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/23 18:27:05 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 20:50:22 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	sim_stopped(t_table *table)
 
 int	philo_death(t_philo *philo)
 {
-	unsigned long	time;
+	long long int	time;
 
 	time = gettimeofday_ms();
 	if ((time - philo->last_meal) >= philo->table->time_to_die)
@@ -84,7 +84,7 @@ void	*supervisor(void *data)
 	{
 		if (end_condition_reached(table) == TRUE)
 			return (NULL);
-		usleep(100);
+		usleep(1000);
 	}
 	return (NULL);
 }

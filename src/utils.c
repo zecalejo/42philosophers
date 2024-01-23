@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:46:30 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/23 18:29:00 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:15:36 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	valid_input(char **av)
 
 int	ph_atoi(char *str)
 {
-	unsigned long	res;
+	long long int	res;
 
 	res = 0;
 	while (*str >= '0' && *str <= '9')
@@ -47,7 +47,7 @@ int	ph_atoi(char *str)
 	return (res);
 }
 
-unsigned long	gettimeofday_ms(void)
+long long int	gettimeofday_ms(void)
 {
 	struct timeval		tv;
 
@@ -63,7 +63,7 @@ void	write_status(t_philo *philo, int is_dead, char *status)
 		pthread_mutex_unlock(&philo->table->write_mtx);
 		return ;
 	}
-	printf("%lu %d %s\n", (gettimeofday_ms() - philo->table->start_time),
+	printf("%lld %d %s\n", (gettimeofday_ms() - philo->table->start_time),
 		philo->id, status);
 	pthread_mutex_unlock(&philo->table->write_mtx);
 }

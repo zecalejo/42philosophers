@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:40:08 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/23 18:29:11 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:15:25 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,6 @@
 # define FALSE 0
 # define TRUE 1
 
-# define NC	"\e[0m"
-# define RED	"\e[31m"
-# define GREEN  "\e[32m"
-# define YELLOW "\e[33m"
-# define PURPLE	"\e[35m"
-# define CYAN	"\e[36m"
-
 # define STR_USAGE	"The arguments should be as follows:\n \
 	./philo <number_of_philosophers> \
 	<time_to_die> <time_to_eat> <time_to_sleep> \
@@ -55,29 +48,29 @@ typedef struct s_philo	t_philo;
 
 typedef struct s_table
 {
-	int				n_philos;
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	int				n_meals;
-	unsigned long	start_time;
-	int				stop_sim;
-	pthread_t		supervisor;
-	pthread_mutex_t	write_mtx;
-	pthread_mutex_t	stop_sim_mtx;
-	pthread_mutex_t	*fork_mtxs;
-	t_philo			**philos;
+	int					n_philos;
+	long long int		time_to_die;
+	long long int		time_to_eat;
+	long long int		time_to_sleep;
+	int					n_meals;
+	long long int		start_time;
+	int					stop_sim;
+	pthread_t			supervisor;
+	pthread_mutex_t		write_mtx;
+	pthread_mutex_t		stop_sim_mtx;
+	pthread_mutex_t		*fork_mtxs;
+	t_philo				**philos;
 }	t_table;
 
 typedef struct s_philo
 {
-	pthread_t		thread;
-	int				id;
-	int				fork[2];
-	int				meals_eaten;
-	unsigned long	last_meal;
-	pthread_mutex_t	philo_mtx;
-	t_table			*table;
+	pthread_t			thread;
+	int					id;
+	int					fork[2];
+	int					meals_eaten;
+	long long int		last_meal;
+	pthread_mutex_t		philo_mtx;
+	t_table				*table;
 }	t_philo;
 
 /************************************************************************
@@ -87,7 +80,7 @@ typedef struct s_philo
 //		utils.c
 int				valid_input(char **av);
 int				ph_atoi(char *str);
-unsigned long	gettimeofday_ms(void);
+long long int	gettimeofday_ms(void);
 void			write_status(t_philo *philo, int is_dead, char *status);
 
 //		init.c

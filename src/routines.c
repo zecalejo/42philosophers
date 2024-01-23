@@ -6,15 +6,15 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:15:54 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/23 18:36:05 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 21:15:28 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	status_duration(t_table *table, unsigned long duration)
+static void	status_duration(t_table *table, long long int duration)
 {
-	unsigned long	end_status;
+	long long int	end_status;
 
 	end_status = gettimeofday_ms() + duration;
 	while (gettimeofday_ms() < end_status)

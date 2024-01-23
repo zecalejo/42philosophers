@@ -6,7 +6,7 @@
 #    By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 11:35:15 by jnuncio-          #+#    #+#              #
-#    Updated: 2024/01/23 18:36:43 by jnuncio-         ###   ########.fr        #
+#    Updated: 2024/01/23 21:13:35 by jnuncio-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME = philo
 BIN	= bin
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -Iinclude -g
-LFLAGS = -pthread #-fsanitize=thread
+LFLAGS = -pthread -fsanitize=thread
 RM = rm -rf
 SRC = $(addprefix src/, main.c\
 	utils.c\
