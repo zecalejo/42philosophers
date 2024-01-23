@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 21:03:27 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 23:48:15 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:27:05 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	set_stop_sim_flag(t_table *table, int state)
 int	sim_stopped(t_table *table)
 {
 	int	tf;
-	
+
 	tf = FALSE;
 	pthread_mutex_lock(&table->stop_sim_mtx);
 	if (table->stop_sim == TRUE)
@@ -31,7 +31,7 @@ int	sim_stopped(t_table *table)
 	return (tf);
 }
 
-int philo_death(t_philo *philo)
+int	philo_death(t_philo *philo)
 {
 	unsigned long	time;
 
@@ -40,7 +40,7 @@ int philo_death(t_philo *philo)
 	{
 		set_stop_sim_flag(philo->table, TRUE);
 		write_status(philo, TRUE, "died");
-		// pthread_mutex_unlock(&philo->philo_mtx);
+		pthread_mutex_unlock(&philo->philo_mtx);
 		return (TRUE);
 	}
 	return (FALSE);
@@ -84,7 +84,7 @@ void	*supervisor(void *data)
 	{
 		if (end_condition_reached(table) == TRUE)
 			return (NULL);
-		usleep(1000);
+		usleep(100);
 	}
 	return (NULL);
 }

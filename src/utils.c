@@ -6,13 +6,13 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 14:46:30 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 16:39:42 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:29:00 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int valid_input(char **av)
+int	valid_input(char **av)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ int valid_input(char **av)
 	return (1);
 }
 
-int ph_atoi(char *str)
+int	ph_atoi(char *str)
 {
 	unsigned long	res;
 

@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 16:06:25 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 16:48:41 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 16:57:40 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	destroy_mtxs(t_table *table)
 	pthread_mutex_destroy(&table->stop_sim_mtx);
 }
 
-static int	msg(char *str, char *detail, int exit_no)
+int	msg(char *str, char *detail, int exit_no)
 {
 	if (!detail)
 		printf("%s", str);
@@ -61,7 +61,6 @@ static int	msg(char *str, char *detail, int exit_no)
 
 int	error_int(char *str, char *detail, t_table *table)
 {
-    (void)table;
 	if (table != NULL)
 		free_table(table);
 	return (msg(str, detail, 0));
@@ -69,7 +68,6 @@ int	error_int(char *str, char *detail, t_table *table)
 
 void	*error_null(char *str, char *detail, t_table *table)
 {
-    (void)table;
 	if (table != NULL)
 		free_table(table);
 	msg(str, detail, EXIT_FAILURE);

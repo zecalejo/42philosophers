@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:11:57 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 23:45:00 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:00:11 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_philo	**philos_init(t_table *table)
 	int		i;
 
 	i = 0;
-	philos = malloc(sizeof(t_philo *) * table->n_philos);
+	philos = malloc(sizeof(t_philo) * table->n_philos);
 	if (!philos)
 		return (error_null(STR_ERR_MALLOC, NULL, 0));
 	while (i < table->n_philos)
@@ -58,8 +58,9 @@ t_philo	**philos_init(t_table *table)
 		if (pthread_mutex_init(&philos[i]->philo_mtx, 0) != 0)
 			return (error_null(STR_ERR_MUTEX, NULL, 0));
 		philos[i]->table = table;
-		philos[i]->id = i + 1;		
+		philos[i]->id = i + 1;
 		philos[i]->meals_eaten = 0;
+		philos[i]->last_meal = 0;
 		assign_forks(philos[i]);
 		i++;
 	}
@@ -81,11 +82,11 @@ static int	global_mtxs_init(t_table *table)
 t_table	*table_init(int ac, char **av)
 {
 	t_table	*table;
-	
+
 	table = malloc(sizeof(t_table) * 1);
 	table->n_philos = ph_atoi(av[1]);
 	if (table->n_philos < 1 || table->n_philos > MAX_PHILOS)
-		return (error_null(STR_ERR_INPUT_NPHIL, av[1], 0));
+		return (error_null(STR_ERR_INPUT_NPHIL, av[1], table));
 	table->time_to_die = ph_atoi(av[2]);
 	table->time_to_eat = ph_atoi(av[3]);
 	table->time_to_sleep = ph_atoi(av[4]);

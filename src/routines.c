@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 21:15:54 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 23:56:13 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:36:05 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	think_routine(t_philo *philo, int silent)
 	long long int	thinking_time;
 
 	pthread_mutex_lock(&philo->philo_mtx);
-	thinking_time = (philo->table->time_to_die - (gettimeofday_ms() - philo->last_meal) \
-		- philo->table->time_to_eat) / 2;
+	thinking_time = (philo->table->time_to_die - (gettimeofday_ms() \
+		- philo->last_meal) - philo->table->time_to_eat) / 2;
 	pthread_mutex_unlock(&philo->philo_mtx);
 	if (thinking_time < 0)
 		thinking_time = 0;
@@ -79,7 +79,7 @@ static void	*foreveralone_routine(t_philo *philo)
 
 void	*philo_routine(void *data)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)data;
 	if (philo->table->n_meals == 0)
@@ -87,7 +87,6 @@ void	*philo_routine(void *data)
 	pthread_mutex_lock(&philo->philo_mtx);
 	philo->last_meal = philo->table->start_time;
 	pthread_mutex_unlock(&philo->philo_mtx);
-	// sim_start_delay(philo->table->start_time);
 	if (philo->table->time_to_die == 0)
 		return (NULL);
 	if (philo->table->n_philos == 1)
@@ -96,6 +95,8 @@ void	*philo_routine(void *data)
 		think_routine(philo, TRUE);
 	while (sim_stopped(philo->table) == FALSE)
 	{
+		if (philo->meals_eaten == philo->table->n_meals)
+			break ;
 		eat_sleep_routine(philo);
 		think_routine(philo, FALSE);
 	}

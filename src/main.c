@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:35:21 by jnuncio-          #+#    #+#             */
-/*   Updated: 2024/01/22 16:48:21 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2024/01/23 17:11:58 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static void	stop_sim(t_table *table)
 int	main(int ac, char **av)
 {
 	t_table	*table;
-	
+
 	if (ac < 5 || ac > 6)
-		return (error_int(STR_USAGE, NULL, 0));
+		return (msg(STR_USAGE, NULL, EXIT_FAILURE));
 	if (!valid_input(av))
 		return (EXIT_FAILURE);
 	table = table_init(ac, av);
